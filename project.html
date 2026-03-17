@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROJECT 0109</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: #fff;
+    overflow-x: hidden;
+
+    /* Full background image */
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url('images/pic3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.jordan {
+    position: fixed;
+    bottom: -50px;
+    width: 60px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-900px) rotate(360deg); opacity: 0; }
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+h2 { color: #ff4d6d; }
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn { background-color: #ff4d6d; color: white; }
+#noBtn { background-color: #aaa; position: relative; }
+
+.hidden { display: none; }
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="questionBox" class="container">
+    <h2>you thought this was actually a project oppsie</h2>
+    <p>but since you here just press yes, don’t overthink it</p>
+    <button id="yesBtn" onclick="showLove()">Yes</button>
+    <button id="noBtn" onmouseover="moveNo()" onclick="growYes()">No</button>
+</div>
+
+<div id="loveBox" class="container hidden">
+    <h2>hey you ❤️</h2>
+
+    <p>
+        I know you’re probably thinking what the fuck is happening… but ever since you said you’ve been putting in the effort,
+        I figured it’s time I do too — so I decided to take it up a notch. Let me show you how it is done LMAO
+    </p>
+
+    <p>
+        You asked me what I love about you… and I didn’t answer properly then,
+        but it’s not something I could’ve just said in one sentence anyway.
+    </p>
+
+    <p>
+        I like how easy it is with you. Like… I don’t have to try too hard or be anything else.
+        It just feels natural.
+    </p>
+
+    <p>
+        Your eyes… yeah I notice them more than you think I actually do. And your smile ahh shame its cute tbh 
+        it actually changes my mood every time, it’s kind of unfair.
+    </p>
+
+    <p>
+        I like the way you are about the things you care about… your family, your mindset, your drive.
+        You’re just you. No forcing it. That’s rare.
+    </p>
+
+    <p>
+        And also… just so you know — you are going to land that job.
+        I don’t even say that just to be nice, I actually believe it. You’ve got it in you fr.
+    </p>
+
+    <p>
+        And I’m not saying any of this to force anything or make it deep…
+        I just thought you should actually know.
+    </p>
+
+    <p>
+        So yeah… that’s why I love you.
+    </p>
+
+    <img src="images/pic1.jpg" alt="Us">
+    <img src="images/pic2.jpg" alt="Us">
+</div>
+
+<script>
+let clickCount = 0;
+
+function growYes() {
+    clickCount++;
+    let yesBtn = document.getElementById("yesBtn");
+    let noBtn = document.getElementById("noBtn");
+
+    let size = 18 + (clickCount * 10);
+    yesBtn.style.fontSize = size + "px";
+    yesBtn.style.padding = (10 + clickCount * 5) + "px";
+
+    if (clickCount >= 3) {
+        noBtn.style.display = "none";
+    }
+}
+
+function moveNo() {
+    let noBtn = document.getElementById("noBtn");
+    noBtn.style.position = "absolute";
+    noBtn.style.top = Math.random() * 200 + "px";
+    noBtn.style.left = Math.random() * 200 + "px";
+}
+
+function showLove() {
+    document.getElementById("questionBox").classList.add("hidden");
+    document.getElementById("loveBox").classList.remove("hidden");
+}
+
+/* Floating Jordans generator */
+function createJordan() {
+    const img = document.createElement("img");
+    img.src = "images/jordan.png"; // your floating Jordan image
+    img.classList.add("jordan");
+    img.style.left = Math.random() * 100 + "vw";
+    img.style.width = (40 + Math.random() * 40) + "px";
+    document.body.appendChild(img);
+    setTimeout(() => { img.remove(); }, 8000);
+}
+setInterval(createJordan, 800);
+</script>
+
+</body>
+</html>
